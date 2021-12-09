@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, FormControl, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
-import { useState, useEffect, FormEvent } from 'react'
+import React,{ useState, useEffect, FormEvent } from 'react'
 import { io } from 'socket.io-client'
 import { IUser } from '../interfaces/IUser'
 import IMessage from '../interfaces/IMessage'
@@ -130,7 +130,7 @@ const Home = () => {
   const fetchOnlineUsers = async () => {
     try {
       let response = await fetch(ADDRESS + '/online-users')
-      if (response) {
+      if (response.ok) {
         let data: { onlineUsers: IUser[] } = await response.json()
         // data is an array with all the current connected users
         setOnlineUsers(data.onlineUsers)
